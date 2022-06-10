@@ -1,0 +1,17 @@
+---
+- name: Create VMs
+  hosts: localhost
+  roles:
+    - role: stackhpc.libvirt-vm
+      libvirt_vms:
+        - state: present
+          name: 'vm4'
+          memory_mb: 512
+          vcpus: 2
+          volumes:
+            - name: 'centos-boot.iso'
+              type: 'file'
+              device: 'cdrom'
+              format: 'raw'
+              target: 'hda'  # first device on ide bus
+              path: '~/db_lab/centos-boot.iso'
